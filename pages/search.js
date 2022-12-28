@@ -111,7 +111,7 @@ export default function Search({ data }) {
   useEffect(() => {
     if (ticker) {
       fetch(
-        `https://api.polygon.io/v2/aggs/ticker/${ticker.Symbol}/prev?adjusted=true&apiKey=${process.env.POLY_API_KEY}`
+        `https://api.polygon.io/v2/aggs/ticker/${ticker.Symbol}/prev?adjusted=true&apiKey=${process.env.NEXT_PUBLIC_POLY_API_KEY}`
       )
         .then((res) => res.json())
         .then((data) => setInfo(data));
@@ -239,7 +239,7 @@ export default function Search({ data }) {
 
 export async function getServerSideProps() {
   const res = await fetch(
-    `https://pkgstore.datahub.io/core/s-and-p-500-companies-financials/constituents-financials_json/data/${process.env.DATAHUB_KEY}/constituents-financials_json.json`
+    `https://pkgstore.datahub.io/core/s-and-p-500-companies-financials/constituents-financials_json/data/${process.env.NEXT_PUBLIC_DATAHUB_KEY}/constituents-financials_json.json`
   );
   const data = await res.json();
   return {
