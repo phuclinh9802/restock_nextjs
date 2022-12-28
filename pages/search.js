@@ -48,34 +48,34 @@ export default function Search({ data }) {
   const [tsla, setTsla] = useState("");
   const loading = open && options.length === 0;
 
-  const fetchData = () => {
-    fetch(
-      `https://api.polygon.io/v2/aggs/ticker/AAPL/prev?adjusted=true&apiKey=${process.env.POLY_API_KEY}`
-    )
-      .then((res) => res.json())
-      .then((data) => setAppl(data));
+  // const fetchData = () => {
+  //   fetch(
+  //     `https://api.polygon.io/v2/aggs/ticker/AAPL/prev?adjusted=true&apiKey=${process.env.POLY_API_KEY}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => setAppl(data));
 
-    fetch(
-      `https://api.polygon.io/v2/aggs/ticker/META/prev?adjusted=true&apiKey=${process.env.POLY_API_KEY}`
-    )
-      .then((res) => res.json())
-      .then((data) => setMeta(data));
-    fetch(
-      `https://api.polygon.io/v2/aggs/ticker/TSLA/prev?adjusted=true&apiKey=${process.env.POLY_API_KEY}`
-    )
-      .then((res) => res.json())
-      .then((data) => setTsla(data));
-  };
+  //   fetch(
+  //     `https://api.polygon.io/v2/aggs/ticker/META/prev?adjusted=true&apiKey=${process.env.POLY_API_KEY}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => setMeta(data));
+  //   fetch(
+  //     `https://api.polygon.io/v2/aggs/ticker/TSLA/prev?adjusted=true&apiKey=${process.env.POLY_API_KEY}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => setTsla(data));
+  // };
 
-  useEffect(() => {
-    if (!appl && !meta && !tsla) {
-      fetchData();
-    }
-  }, [appl.ticker, meta.ticker, tsla.ticker]);
+  // useEffect(() => {
+  //   if (!appl && !meta && !tsla) {
+  //     fetchData();
+  //   }
+  // }, [appl.ticker, meta.ticker, tsla.ticker]);
 
-  console.log(appl);
-  console.log(meta);
-  console.log(tsla);
+  // console.log(appl);
+  // console.log(meta);
+  // console.log(tsla);
 
   const getData = (event, value) => {
     setTicker(value);
