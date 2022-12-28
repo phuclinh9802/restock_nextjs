@@ -227,7 +227,10 @@ export default function Search({ data }) {
         ) : (
           <div className={styles.stockdetails}>
             <div className={styles.pricesection}>
-              <p>Loading, please wait...</p>
+              <p>
+                It is either loading, or you have exceeded 5 searches per minute
+                due to the limited API calls. Please wait...
+              </p>
               {/* <p> (5.3%)</p> */}
             </div>
           </div>
