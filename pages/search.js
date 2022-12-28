@@ -118,6 +118,8 @@ export default function Search({ data }) {
     }
   }, [ticker]);
 
+  console.log("-----");
+  console.log(info);
   return (
     <Layout>
       <div className={styles.stocksection}>
