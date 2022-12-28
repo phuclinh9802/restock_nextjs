@@ -1,129 +1,193 @@
-.container {
-  padding: 0 2rem;
-}
-
-.main {
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer {
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
-  justify-content: center;
-  align-items: center;
-}
-
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
-
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
-
-.title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
-}
-
-.title,
-.description {
-  text-align: center;
-}
-
-.description {
-  margin: 4rem 0;
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
-
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-}
-
-.grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
-}
-
-.card {
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
-}
-
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
-}
-
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
-
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
-}
-
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
-}
-
-@media (max-width: 600px) {
-  .grid {
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+.hero {
     width: 100%;
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-  }
+    padding: 0 50px;
+    color: #fff;
 }
 
-@media (prefers-color-scheme: dark) {
-  .card,
-  .footer {
-    border-color: #222;
-  }
-  .code {
-    background: #111;
-  }
-  .logo img {
-    filter: invert(1);
-  }
+
+.hero h2 {
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 56px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    width: 50%;
+    margin: 0;
 }
+
+.hero p {
+    font-family: 'Work Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    text-transform: lowercase;
+}
+
+.startbutton {
+    padding: 20px 50px;
+    background: #2D9B29;
+    transition: 150ms ease;
+    border-radius: 5px;
+    box-shadow: 0 8px 8px -4px #111;
+    margin: 20px;
+}
+
+.startbutton:hover {
+    background: #288524;
+}
+
+.stocksection {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    color: #fff;
+}
+
+.activestock {
+    /* margin: auto; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    justify-items: center;
+    padding: 50px 0;
+    align-self: flex-start;
+    /* height: 40%; */
+}
+
+.activestock .ticker {
+    display: block;
+    padding: 0 20px;
+}
+
+.activestock .ticker .stockname {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 45px;
+    text-transform: uppercase;
+    margin: 10px 0;
+}
+
+.activestock .ticker .stockprice {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 45px;
+    line-height: 45px;
+    text-transform: uppercase;
+    margin: 10px 0;
+}
+
+.change {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.details {
+    display: block;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.ticker {
+    width: 300px;
+    height: 200px;
+    background: linear-gradient(244.66deg, rgba(217, 217, 217, 0.8) 21.08%, rgba(217, 217, 217, 0) 79.68%);
+}
+
+.searchbar {
+    width: 500px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(217, 217, 217, 0.5);
+    color: #fff;
+    padding: 20px;
+    border: 1px
+    
+}
+
+.searchbar::placeholder {
+    color: #fff;
+}
+
+.stockdetails {
+    display: block;
+    padding: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.pricesection {
+    display: flex;
+    gap: 20px;
+    /* grid-template-columns: repeat(10, 1fr); */
+}
+
+.pricesection h2 {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 45px;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+span.symbol {
+    font-size: 0.65em;
+}
+
+.pricesection p {
+    text-align:center;
+    align-self: center;
+}
+
+.details {
+    display: block;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 30px;
+    padding: 20px;
+
+}
+
+.content {
+    display: grid;
+    grid-template-columns: auto auto;
+    color: #24343E;
+}
+
+.summary {
+    margin-top: 0;
+    color: #63261D;
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 1440px) {
+    .hero h2 {
+        width: 80%;
+    }
+}
+

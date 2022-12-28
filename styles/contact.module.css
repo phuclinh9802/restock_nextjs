@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+
+.container {
+    width: 70%;
+    height: auto;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 30px;
+    align-items: center;
+    padding: 30px;
+}
+
+.header h2 {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin: 0;
+    margin-bottom: 30px;
+
+
+    color: #63261D;
+}
+
+.container .contactsection {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-items: center;
+    gap: 50px;
+}
+
+.contactform {
+    width: 80%;
+}
+
+.contactform form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    border: none;
+    background: #FFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+input.input {
+    /* padding: 10px 100px 10px 5px; */
+    padding: 14px 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    font-family: monospace;
+}
+
+textarea.input {
+    width: 100%;
+    padding: 14px 20px;
+    height: 150px;
+    resize: none;
+    /* padding: 10px 100px 100px 5px; */
+}
+
+.contactbutton {
+    width: 45%;
+    align-self: center;
+    padding: 10px;
+    margin: 10px;
+    background: #2D9B29;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.35);
+    border: none;
+    color: white;
+}
+
+
+.social {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+
+.avatar {
+    border-radius: 100%;
+    filter: drop-shadow(0px 4px 50px rgba(0, 0, 0, 0.5));
+}
+
+.link {
+    color: #111111;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.fontawesome {
+    align-self: center;
+}
+.icon {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 20px;
+}
