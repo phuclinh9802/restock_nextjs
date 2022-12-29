@@ -25,6 +25,10 @@
     color: #ddd;
 }
 
+.navbar .menu {
+    display: none;
+}
+
 .brand {
     font-family: 'Work Sans';
     font-style: normal;
@@ -44,4 +48,22 @@
 
 .navbar ul li {
     padding: 0 20px;
+}
+
+@media screen and (max-width: 425px) {
+    .container {
+        padding: 0;
+    }
+    .navbar ul {
+        display: none;
+    }
+
+    .navbar .brand {
+        padding: 0 20px;
+    }
+    .navbar .menu {
+        display: flex;
+        padding: 0 20px;
+    }
+
 }

@@ -106,9 +106,9 @@ export default function Search({ data }) {
     activeStocks = newActiveStocks.map((data, i) => (
       <div key={i} className={styles.ticker}>
         <h2 className={styles.stockname}>{data["symbol"]}</h2>
-        <h1 className={styles.stockprice}>${data["price"]}</h1>
+        <h1 className={styles.stockprice}>${data["price"].toFixed(2)}</h1>
         <div className={styles.change}>
-          <p className={styles.pricechange}>{data["change"]}</p>
+          <p className={styles.pricechange}>{data["change"].toFixed(2)}</p>
           <p className={styles.percentagechange}>
             ({data["changesPercentage"].toFixed(2)}%)
           </p>
@@ -138,7 +138,7 @@ export default function Search({ data }) {
           loading={loading}
           getOptionLabel={(data) => data.Symbol}
           options={options}
-          sx={{ width: 500, borderColor: "#fff" }}
+          sx={{ width: "50vw", borderColor: "#fff" }}
           renderOption={(props, data) => (
             <Box component="li" {...props} key={data.Symbol}>
               {data.Name} - {data.Symbol}
