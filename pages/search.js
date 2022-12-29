@@ -59,8 +59,6 @@ export default function Search({ data }) {
     }
   }, [core]);
 
-  console.log(core);
-
   const getData = (event, value) => {
     setTicker(value);
     console.log(value);
@@ -118,9 +116,6 @@ export default function Search({ data }) {
       </div>
     ));
   }
-
-  console.log("-----");
-  console.log(info);
   return (
     <Layout>
       <div className={styles.stocksection}>
