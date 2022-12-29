@@ -54,10 +54,7 @@ export default function Search({ data }) {
       fetch(
         `https://financialmodelingprep.com/api/v3/stock_market/actives?apikey=${process.env.NEXT_PUBLIC_ACTIVE_KEY}`
       )
-        .then((res) => {
-          console.log(res.json());
-          res.json();
-        })
+        .then((res) => res.json())
         .then((data) => setCore(data));
     }
   }, [core]);
@@ -105,56 +102,30 @@ export default function Search({ data }) {
     }
   }, [ticker]);
 
+  let activeStocks;
+  if (core) {
+    let newActiveStocks = core.slice(0, 3);
+    activeStocks = newActiveStocks.map((data, i) => (
+      <div key={i} className={styles.ticker}>
+        <h2 className={styles.stockname}>{data["symbol"]}</h2>
+        <h1 className={styles.stockprice}>${data["price"]}</h1>
+        <div className={styles.change}>
+          <p className={styles.pricechange}>{data["change"]}</p>
+          <p className={styles.percentagechange}>
+            ({data["changesPercentage"].toFixed(2)}%)
+          </p>
+        </div>
+      </div>
+    ));
+  }
+
   console.log("-----");
   console.log(info);
   return (
     <Layout>
       <div className={styles.stocksection}>
         <div className={styles.activestock}>
-          <div className={styles.ticker} id="stock1">
-            {core ? (
-              <div>
-                <h2 className={styles.stockname}>{core[0]["symbol"]}</h2>
-                <h1 className={styles.stockprice}>${core[0]["price"]}</h1>
-                <div className={styles.change}>
-                  <p className={styles.pricechange}>{core[0]["change"]}</p>
-                  <p className={styles.percentagechange}>
-                    (%{core[0]["changesPercentage"].toFixed(2)})
-                  </p>
-                </div>
-              </div>
-            ) : (
-              <h2>Loading...</h2>
-            )}
-          </div>
-          <div className={styles.ticker} id="stock2">
-            <h2 className={styles.stockname}>{core[1]["symbol"]}</h2>
-            {core ? (
-              <h1 className={styles.stockprice}>${core[1]["price"]}</h1>
-            ) : (
-              <h2>Loading...</h2>
-            )}
-            <div className={styles.change}>
-              <p className={styles.pricechange}>{core[1]["change"]}</p>
-              <p className={styles.percentagechange}>
-                (%{core[1]["changesPercentage"].toFixed(2)})
-              </p>
-            </div>
-          </div>
-          <div className={styles.ticker} id="stock3">
-            <h2 className={styles.stockname}>{core[2]["symbol"]}</h2>
-            {core ? (
-              <h1 className={styles.stockprice}>${core[2]["price"]}</h1>
-            ) : (
-              <h2>Loading...</h2>
-            )}
-            <div className={styles.change}>
-              <p className={styles.pricechange}>{core[2]["change"]}</p>
-              <p className={styles.percentagechange}>
-                (%{core[2]["changesPercentage"].toFixed(2)})
-              </p>
-            </div>
-          </div>
+          {activeStocks ? activeStocks : <h2>Loading...</h2>}
         </div>
 
         <Autocomplete
