@@ -46,36 +46,23 @@ export default function Search({ data }) {
   const [appl, setAppl] = useState("");
   const [meta, setMeta] = useState("");
   const [tsla, setTsla] = useState("");
+  const [core, setCore] = useState(null);
   const loading = open && options.length === 0;
 
-  // const fetchData = () => {
-  //   fetch(
-  //     `https://api.polygon.io/v2/aggs/ticker/AAPL/prev?adjusted=true&apiKey=${process.env.POLY_API_KEY}`
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => setAppl(data));
+  useEffect(() => {
+    if (!core) {
+      fetch(
+        `https://financialmodelingprep.com/api/v3/stock_market/actives?apikey=${process.env.NEXT_PUBLIC_ACTIVE_KEY}`
+      )
+        .then((res) => {
+          console.log(res.json());
+          res.json();
+        })
+        .then((data) => setCore(data));
+    }
+  }, [core]);
 
-  //   fetch(
-  //     `https://api.polygon.io/v2/aggs/ticker/META/prev?adjusted=true&apiKey=${process.env.POLY_API_KEY}`
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => setMeta(data));
-  //   fetch(
-  //     `https://api.polygon.io/v2/aggs/ticker/TSLA/prev?adjusted=true&apiKey=${process.env.POLY_API_KEY}`
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => setTsla(data));
-  // };
-
-  // useEffect(() => {
-  //   if (!appl && !meta && !tsla) {
-  //     fetchData();
-  //   }
-  // }, [appl.ticker, meta.ticker, tsla.ticker]);
-
-  // console.log(appl);
-  // console.log(meta);
-  // console.log(tsla);
+  console.log(core);
 
   const getData = (event, value) => {
     setTicker(value);
@@ -102,11 +89,11 @@ export default function Search({ data }) {
     };
   }, [loading]);
 
-  useEffect(() => {
-    if (!open) {
-      setOptions([]);
-    }
-  }, [open]);
+  // useEffect(() => {
+  //   if (!open) {
+  //     setOptions([]);
+  //   }
+  // }, [open]);
 
   useEffect(() => {
     if (ticker) {
@@ -125,39 +112,47 @@ export default function Search({ data }) {
       <div className={styles.stocksection}>
         <div className={styles.activestock}>
           <div className={styles.ticker} id="stock1">
-            <h2 className={styles.stockname}>AAPL</h2>
-            {appl && !appl.error ? (
-              <h1 className={styles.stockprice}>${appl.results[0].c}</h1>
+            {core ? (
+              <div>
+                <h2 className={styles.stockname}>{core[0]["symbol"]}</h2>
+                <h1 className={styles.stockprice}>${core[0]["price"]}</h1>
+                <div className={styles.change}>
+                  <p className={styles.pricechange}>{core[0]["change"]}</p>
+                  <p className={styles.percentagechange}>
+                    (%{core[0]["changesPercentage"].toFixed(2)})
+                  </p>
+                </div>
+              </div>
             ) : (
               <h2>Loading...</h2>
             )}
-            <div className={styles.change}>
-              {/* <p className={styles.pricechange}>-6.15</p>
-              <p className={styles.percentagechange}>(-4.24%)</p> */}
-            </div>
           </div>
           <div className={styles.ticker} id="stock2">
-            <h2 className={styles.stockname}>META</h2>
-            {meta && !meta.error ? (
-              <h1 className={styles.stockprice}>${meta.results[0].c}</h1>
+            <h2 className={styles.stockname}>{core[1]["symbol"]}</h2>
+            {core ? (
+              <h1 className={styles.stockprice}>${core[1]["price"]}</h1>
             ) : (
               <h2>Loading...</h2>
             )}
             <div className={styles.change}>
-              {/* <p className={styles.pricechange}>-1.63</p>
-              <p className={styles.percentagechange}>(-1.80%)</p> */}
+              <p className={styles.pricechange}>{core[1]["change"]}</p>
+              <p className={styles.percentagechange}>
+                (%{core[1]["changesPercentage"].toFixed(2)})
+              </p>
             </div>
           </div>
           <div className={styles.ticker} id="stock3">
-            <h2 className={styles.stockname}>TSLA</h2>
-            {tsla && !tsla.error ? (
-              <h1 className={styles.stockprice}>${tsla.results[0].c}</h1>
+            <h2 className={styles.stockname}>{core[2]["symbol"]}</h2>
+            {core ? (
+              <h1 className={styles.stockprice}>${core[2]["price"]}</h1>
             ) : (
               <h2>Loading...</h2>
             )}
             <div className={styles.change}>
-              {/* <p className={styles.pricechange}>0.33</p>
-              <p className={styles.percentagechange}>(0.15%)</p> */}
+              <p className={styles.pricechange}>{core[2]["change"]}</p>
+              <p className={styles.percentagechange}>
+                (%{core[2]["changesPercentage"].toFixed(2)})
+              </p>
             </div>
           </div>
         </div>
