@@ -105,10 +105,10 @@ export default function Layout({ children, home }) {
               anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
               <MenuItem>
-                <Home /> Home
+                <Home /> <Link href="/">Home</Link>
               </MenuItem>
               <MenuItem>
-                <Search /> Search
+                <Search /> <Link href="/search">Search</Link>
               </MenuItem>
               <Divider />
             </Menu>

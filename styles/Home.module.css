@@ -186,8 +186,12 @@ span.symbol {
 }
 
 @media screen and (max-width: 1440px) {
+    .hero {
+        padding: 0 50px;
+    }
     .hero h2 {
         width: 80%;
+        font-size: 45px;
     }
 
     .activestock {
@@ -217,6 +221,19 @@ span.symbol {
 }
 
 @media screen and (max-width: 1024px) {
+    .hero {
+            padding: 0 20px;
+    }
+
+    .hero h2 {
+        width: 80%;
+        font-size: 40px;
+    }
+
+    .hero p {
+        font-size: 20px;
+    }
+
     .activestock {
         gap: 20px;
         padding: 20px 0;
@@ -244,6 +261,24 @@ span.symbol {
 }
 
 @media screen and (max-width: 768px) {
+    .hero {
+        padding: 0 20px;
+    }
+
+    .hero h2 {
+        width: 100%;
+        font-size: 30px;
+        line-height: 48px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .startbutton {
+        padding: 15px 40px;
+        margin: 15px;
+    }
     .activestock {
         gap: 20px;
         padding: 20px 0;
@@ -271,6 +306,24 @@ span.symbol {
 }
 
 @media screen and (max-width: 425px) {
+    .hero {
+        padding: 0 20px;
+    }
+
+    .hero h2 {
+        width: 100%;
+        font-size: 22px;
+        line-height: 40px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .startbutton {
+        padding: 10px 30px;
+        margin: 12px;
+    }
     .activestock {
         gap: 2px;
         padding: 20px 0;
@@ -279,7 +332,7 @@ span.symbol {
 
     .activestock .ticker {
         width: 100%;
-        height: 100%;
+
     }
 
     .activestock .ticker .stockname, .activestock .ticker .stockprice {
@@ -298,3 +351,31 @@ span.symbol {
     }
 }
 
+@media only screen and (device-width : 414px) and (device-height : 896px) and (-webkit-device-pixel-ratio : 3) {
+    .activestock {
+            gap: 2px;
+            padding: 20px 0;
+            width: 100%;
+        }
+    
+        .activestock .ticker {
+            width: 100%;
+        }
+    
+        .activestock .ticker .stockname,
+        .activestock .ticker .stockprice {
+            margin: 0;
+        }
+    
+        .activestock .ticker .stockname {
+            font-size: 14px;
+        }
+    
+        .activestock .ticker .stockprice {
+            font-size: 21px;
+        }
+    
+        .change {
+            font-size: 0.7em;
+        }
+    }
