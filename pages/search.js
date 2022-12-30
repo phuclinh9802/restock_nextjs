@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Search({ data, children }) {
+export default function Search({ data }) {
   const classes = useStyles();
 
   let defaultData;
@@ -66,6 +66,7 @@ export default function Search({ data, children }) {
 
   const getData = (event, value) => {
     setTicker(value);
+    console.log(value);
   };
 
   useEffect(() => {
@@ -97,7 +98,7 @@ export default function Search({ data, children }) {
   useEffect(() => {
     if (ticker) {
       fetch(
-        `https://api.polygon.io/v2/aggs/ticker/${ticker.Symbol}/prev?adjusted=true&apiKey=${process.env.NEXT_PUBLIC_POLY_API_KEY}`
+        `https://api.polygon.io/v2/aggs/ticker/${ticker.symbol}/prev?adjusted=true&apiKey=${process.env.NEXT_PUBLIC_POLY_API_KEY}`
       )
         .then((res) => res.json())
         .then((data) => setInfo(data));
@@ -168,12 +169,13 @@ export default function Search({ data, children }) {
           }}
           onChange={getData}
           loading={loading}
-          getOptionLabel={(data) => data.Symbol}
-          options={options}
+          getOptionLabel={(data) => data.symbol}
+          groupBy={(option) => option.sector}
+          options={options.sort((a, b) => b.sector.localeCompare(a.sector))}
           sx={{ width: "50vw", borderColor: "#fff" }}
           renderOption={(props, data) => (
-            <Box component="li" {...props} key={data.Symbol}>
-              {data.Name} - {data.Symbol}
+            <Box component="li" {...props} key={data.symbol}>
+              {data.companyName} - {data.symbol}
             </Box>
           )}
           renderInput={(params) => (
@@ -233,10 +235,14 @@ export default function Search({ data, children }) {
 }
 
 export async function getServerSideProps() {
+  // const res = await fetch(
+  //   `https://pkgstore.datahub.io/core/s-and-p-500-companies-financials/constituents-financials_json/data/${process.env.NEXT_PUBLIC_DATAHUB_KEY}/constituents-financials_json.json`
+  // );
   const res = await fetch(
-    `https://pkgstore.datahub.io/core/s-and-p-500-companies-financials/constituents-financials_json/data/${process.env.NEXT_PUBLIC_DATAHUB_KEY}/constituents-financials_json.json`
+    `https://financialmodelingprep.com/api/v3/stock-screener?marketCapMoreThan=1&betaMoreThan=1&volumeMoreThan=10000&exchange=NASDAQ&dividendMoreThan=0&apikey=${process.env.NEXT_PUBLIC_ACTIVE_KEY}`
   );
   const data = await res.json();
+  console.log(data);
   return {
     props: {
       data,
