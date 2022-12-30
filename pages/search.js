@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Search({ data }) {
+export default function Search({ data, children }) {
   const classes = useStyles();
 
   let defaultData;
@@ -43,9 +43,7 @@ export default function Search({ data }) {
   const [options, setOptions] = useState([]);
   const [info, setInfo] = useState("");
   const [ticker, setTicker] = useState("");
-  const [appl, setAppl] = useState("");
-  const [meta, setMeta] = useState("");
-  const [tsla, setTsla] = useState("");
+  const [toggle, setToggle] = useState(false);
   const [core, setCore] = useState(null);
   const loading = open && options.length === 0;
 
@@ -59,9 +57,15 @@ export default function Search({ data }) {
     }
   }, [core]);
 
+  const handleWinning = () => {
+    setToggle(true);
+  };
+  const handleLosing = () => {
+    setToggle(false);
+  };
+
   const getData = (event, value) => {
     setTicker(value);
-    console.log(value);
   };
 
   useEffect(() => {
@@ -100,11 +104,31 @@ export default function Search({ data }) {
     }
   }, [ticker]);
 
-  let activeStocks;
+  let activeWinningStocks;
+  let activeLosingStocks;
   if (core) {
-    let newActiveStocks = core.slice(0, 3);
-    activeStocks = newActiveStocks.map((data, i) => (
+    core.sort((a, b) => b.changesPercentage - a.changesPercentage);
+
+    let activeWinners = core.slice(0, 3);
+    let activeLosers = core.slice(core.length - 3, core.length);
+    // core.sort((a, b) => a.changesPercentage - b.changesPercentage);
+
+    let newActiveWinningStocks = activeWinners.slice(0, 3);
+    activeWinningStocks = newActiveWinningStocks.map((data, i) => (
       <div key={i} className={styles.ticker}>
+        <h2 className={styles.stockname}>{data["symbol"]}</h2>
+        <h1 className={styles.stockprice}>${data["price"].toFixed(2)}</h1>
+        <div className={styles.change}>
+          <p className={styles.pricechange}>{data["change"].toFixed(2)}</p>
+          <p className={styles.percentagechange}>
+            ({data["changesPercentage"].toFixed(2)}%)
+          </p>
+        </div>
+      </div>
+    ));
+
+    activeLosingStocks = activeLosers.map((data, i) => (
+      <div key={i + 3} className={styles.ticker}>
         <h2 className={styles.stockname}>{data["symbol"]}</h2>
         <h1 className={styles.stockprice}>${data["price"].toFixed(2)}</h1>
         <div className={styles.change}>
@@ -119,8 +143,16 @@ export default function Search({ data }) {
   return (
     <Layout>
       <div className={styles.stocksection}>
+        <ul className={styles.activetabs}>
+          <li>
+            <button onClick={handleWinning}>Top 3 Active Winning Stocks</button>
+          </li>
+          <li>
+            <button onClick={handleLosing}>Top 3 Active Losing Stocks</button>
+          </li>
+        </ul>
         <div className={styles.activestock}>
-          {activeStocks ? activeStocks : <h2>Loading...</h2>}
+          {toggle ? activeWinningStocks : activeLosingStocks}
         </div>
 
         <Autocomplete
@@ -163,38 +195,37 @@ export default function Search({ data }) {
             />
           )}
         />
-        {info.results ? (
-          <div className={styles.stockdetails}>
-            <div className={styles.pricesection}>
-              <h2>
-                {info.ticker}{" "}
-                {/* <span className={styles.symbol}>({info.ticker})</span> */}
-              </h2>
-              <p>${info.results[0].c}</p>
-              {/* <p> (5.3%)</p> */}
-            </div>
-            <div className={styles.details}>
-              <h3 className={styles.summary}>Summary</h3>
-              <div className={styles.content}>
-                <p>High: {info.results[0].h}</p>
-                <p>Low: {info.results[0].l}</p>
-                <p>Open: {info.results[0].o}</p>
-
-                <p>Volume: {info.results[0].v}</p>
-                <p>Volume weighted AVG Price: {info.results[0].vw}</p>
-              </div>
-            </div>
-          </div>
+        {info.status == "ERROR" ? (
+          <p>
+            It is either loading, or you have exceeded 5 searches per minute due
+            to the limited API calls. Please wait...
+          </p>
         ) : (
-          <div className={styles.stockdetails}>
-            <div className={styles.pricesection}>
-              <p>
-                It is either loading, or you have exceeded 5 searches per minute
-                due to the limited API calls. Please wait...
-              </p>
-              {/* <p> (5.3%)</p> */}
-            </div>
-          </div>
+          <>
+            {info.results ? (
+              <div className={styles.stockdetails}>
+                <div className={styles.pricesection}>
+                  <h2>
+                    {info.ticker}{" "}
+                    {/* <span className={styles.symbol}>({info.ticker})</span> */}
+                  </h2>
+                  <p>${info.results[0].c}</p>
+                  {/* <p> (5.3%)</p> */}
+                </div>
+                <div className={styles.details}>
+                  <h3 className={styles.summary}>Summary</h3>
+                  <div className={styles.content}>
+                    <p>High: {info.results[0].h}</p>
+                    <p>Low: {info.results[0].l}</p>
+                    <p>Open: {info.results[0].o}</p>
+
+                    <p>Volume: {info.results[0].v}</p>
+                    <p>Volume weighted AVG Price: {info.results[0].vw}</p>
+                  </div>
+                </div>
+              </div>
+            ) : null}
+          </>
         )}
       </div>
     </Layout>

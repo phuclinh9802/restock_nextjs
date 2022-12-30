@@ -69,6 +69,25 @@
     /* height: 40%; */
 }
 
+.activetabs {
+    display: flex;
+    gap: 20px;
+    list-style-type: none;
+}
+
+.activetabs li button {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: 200ms all;
+}
+
+.activetabs li button:hover {
+    color: #ccc;
+
+}
+
 .activestock .ticker {
     display: block;
     padding: 0 20px;
