@@ -48,6 +48,7 @@
     border: none;
     background: #FFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    color: #111111;
 }
 
 input.input {
@@ -104,4 +105,12 @@ textarea.input {
     display: grid;
     grid-template-columns: auto auto;
     gap: 20px;
+}
+
+h2.appreciation {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #333;
 }
