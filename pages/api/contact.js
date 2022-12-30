@@ -13,7 +13,7 @@ export default function (req, res) {
   });
 
   const mailData = {
-    from: req.body.email,
+    from: "phuclinh9802@gmail.com",
     to: "phuclinh9802@gmail.com",
     subject: `Message From ${req.body.name}`,
     text: req.body.message + " | Sent from: " + req.body.email,
@@ -22,9 +22,9 @@ export default function (req, res) {
 
   transporter.sendMail(mailData, function (err, info) {
     if (err) console.log(err);
-    else console.log(info);
+    else {
+      console.log("mail sent");
+      res.send("success");
+    }
   });
-
-  console.log(req.body);
-  res.send("success");
 }
