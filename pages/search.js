@@ -30,21 +30,15 @@ const useStyles = makeStyles((theme) => ({
 export default function Search({ data }) {
   const classes = useStyles();
 
-  let defaultData;
-
-  data.map((el) => {
-    if (el.Symbol == "AAPL") {
-      defaultData = el;
-    }
-  });
-
-  // console.log(defaultData);
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
   const [info, setInfo] = useState("");
+  const [moreInfo, setMoreInfo] = useState(null);
   const [ticker, setTicker] = useState("");
   const [toggle, setToggle] = useState(false);
   const [core, setCore] = useState(null);
+  const [dividend, setDividend] = useState(null);
+
   const loading = open && options.length === 0;
 
   useEffect(() => {
@@ -66,8 +60,27 @@ export default function Search({ data }) {
 
   const getData = (event, value) => {
     setTicker(value);
-    console.log(value);
   };
+
+  // useEffect(() => {
+  //   fetch(
+  //     `https://financialmodelingprep.com/api/v3/historical-price-full/stock_dividend/${ticker.symbol}?apikey=${process.env.NEXT_PUBLIC_ACTIVE_KEY}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => setDividend(data));
+  // }, [dividend]);
+
+  useEffect(() => {
+    let newInfo = {};
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].symbol == ticker.symbol) {
+        console.log("here");
+        newInfo = data[i];
+        setMoreInfo(data[i]);
+        break;
+      }
+    }
+  }, [ticker, moreInfo]);
 
   useEffect(() => {
     let active = true;
@@ -112,7 +125,6 @@ export default function Search({ data }) {
 
     let activeWinners = core.slice(0, 3);
     let activeLosers = core.slice(core.length - 3, core.length);
-    // core.sort((a, b) => a.changesPercentage - b.changesPercentage);
 
     let newActiveWinningStocks = activeWinners.slice(0, 3);
     activeWinningStocks = newActiveWinningStocks.map((data, i) => (
@@ -205,27 +217,44 @@ export default function Search({ data }) {
         ) : (
           <>
             {info.results ? (
-              <div className={styles.stockdetails}>
-                <div className={styles.pricesection}>
-                  <h2>
-                    {info.ticker}{" "}
-                    {/* <span className={styles.symbol}>({info.ticker})</span> */}
-                  </h2>
-                  <p>${info.results[0].c}</p>
-                  {/* <p> (5.3%)</p> */}
-                </div>
-                <div className={styles.details}>
-                  <h3 className={styles.summary}>Summary</h3>
-                  <div className={styles.content}>
-                    <p>High: {info.results[0].h}</p>
-                    <p>Low: {info.results[0].l}</p>
-                    <p>Open: {info.results[0].o}</p>
+              <>
+                <div className={styles.stockdetails}>
+                  <>
+                    <div className={styles.pricesection}>
+                      <h2>
+                        {moreInfo.companyName} ({info.ticker}){" "}
+                        {/* <span className={styles.symbol}>({info.ticker})</span> */}
+                      </h2>
+                      <p>${moreInfo.price}</p>
+                      {/* <p> (5.3%)</p> */}
+                    </div>
+                    <div className={styles.details}>
+                      <h3 className={styles.summary}>Summary</h3>
+                      <div className={styles.content}>
+                        <p>High: {info.results[0].h}</p>
+                        <p>Low: {info.results[0].l}</p>
+                        <p>Open: {info.results[0].o}</p>
 
-                    <p>Volume: {info.results[0].v}</p>
-                    <p>Volume weighted AVG Price: {info.results[0].vw}</p>
-                  </div>
+                        <p>
+                          Volume:{" "}
+                          {info.results[0].v.toLocaleString(undefined, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
+                        </p>
+                        <p>Volume weighted AVG Price: {info.results[0].vw}</p>
+                        <p>
+                          Market Cap:{" "}
+                          {moreInfo.marketCap.toLocaleString(undefined, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
+                        </p>
+                      </div>
+                    </div>
+                  </>
                 </div>
-              </div>
+              </>
             ) : null}
           </>
         )}
@@ -242,7 +271,6 @@ export async function getServerSideProps() {
     `https://financialmodelingprep.com/api/v3/stock-screener?marketCapMoreThan=1&betaMoreThan=1&volumeMoreThan=10000&exchange=NASDAQ&dividendMoreThan=0&apikey=${process.env.NEXT_PUBLIC_ACTIVE_KEY}`
   );
   const data = await res.json();
-  console.log(data);
   return {
     props: {
       data,

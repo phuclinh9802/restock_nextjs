@@ -78,6 +78,7 @@
 .activetabs li button {
     background-color: transparent;
     border: none;
+    color: #fff;
     border-bottom: 1px solid #ddd;
     cursor: pointer;
     transition: 200ms all;
