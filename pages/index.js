@@ -10,7 +10,10 @@ export default function Home() {
     <Layout>
       <div className={styles.hero}>
         <h2>Where your researching journey begins</h2>
-        <p>A simple app to search for your favorite stock details</p>
+        <p>
+          A simple app to search for your favorite stocks using Financial
+          Modeling Prep Stock API
+        </p>
         <Link href="/search" passHref legacyBehavior>
           <a className={styles.startbutton}>Get Started</a>
         </Link>

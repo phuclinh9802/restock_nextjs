@@ -31,7 +31,6 @@
     font-weight: 400;
     font-size: 24px;
     line-height: 28px;
-    text-transform: lowercase;
 }
 
 .startbutton {
@@ -69,10 +68,23 @@
     /* height: 40%; */
 }
 
-.activetabs {
+.activetabs, .profiletabs {
     display: flex;
     gap: 20px;
     list-style-type: none;
+}
+
+.profiletabs li button {
+    background-color: transparent;
+    border: none;
+    color: #111;
+    border-bottom: 1px solid #111;
+    cursor: pointer;
+    transition: 200ms all;
+}
+
+.profiletabs li button:hover {
+    color: #63261D;
 }
 
 .activetabs li button {
@@ -178,6 +190,18 @@ span.symbol {
     align-self: center;
 }
 
+.headersummary {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+}
+
+.img {
+    width: 80px;
+    text-align: center;
+}
+
+
 .details {
     display: block;
     width: 100%;
@@ -203,6 +227,12 @@ span.symbol {
     line-height: 30px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
+}
+
+.companydescription {
+    padding: 20px 0;
+    line-height: 30px;
+    width: 80%;
 }
 
 @media screen and (max-width: 1440px) {
