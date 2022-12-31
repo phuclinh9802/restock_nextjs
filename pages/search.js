@@ -161,7 +161,6 @@ export default function Search({ data }) {
     ));
   }
 
-  console.log(profile);
   return (
     <Layout>
       <div className={styles.stocksection}>
