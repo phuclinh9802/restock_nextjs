@@ -130,7 +130,6 @@ export default function Search({ data }) {
     let tempCore = core;
 
     let activeWinners = tempCore.slice(0, 6);
-    console.log(activeWinners);
     let activeLosers = tempCore.slice(tempCore.length - 6, tempCore.length);
 
     let newActiveWinningStocks = activeWinners.slice(0, 5);
