@@ -12,7 +12,7 @@ export default function Home() {
         <h2>Where your researching journey begins</h2>
         <p>
           A simple app to search for your favorite stocks using Financial
-          Modeling Prep Stock API
+          Modeling Prep and Polygon.io API
         </p>
         <Link href="/search" passHref legacyBehavior>
           <a className={styles.startbutton}>Get Started</a>
