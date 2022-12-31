@@ -328,7 +328,7 @@ export default function Search({ data }) {
 
 export async function getServerSideProps() {
   const res = await fetch(
-    `https://financialmodelingprep.com/api/v3/stock-screener?marketCapMoreThan=1&betaMoreThan=1&volumeMoreThan=10000&exchange=NASDAQ&dividendMoreThan=0&apikey=${process.env.NEXT_PUBLIC_ACTIVE_KEY}`
+    `https://financialmodelingprep.com/api/v3/stock-screener?limit=5000&apikey=${process.env.NEXT_PUBLIC_ACTIVE_KEY}`
   );
   const data = await res.json();
   return {
