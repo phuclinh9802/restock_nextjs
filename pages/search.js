@@ -364,7 +364,7 @@ export default function Search({ newData }) {
                                           .charAt(0)
                                           .toUpperCase() +
                                         profile[0].state.slice(1).toLowerCase()
-                                      : "N/A"}
+                                      : "N/A"}{" "}
                                     {profile[0].zip ? profile[0].zip : "N/A"}
                                   </p>
                                   <p></p>
