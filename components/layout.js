@@ -10,7 +10,8 @@ import Divider from "@mui/material/Divider";
 import Search from "@mui/icons-material/Search";
 import Home from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { CircularProgress } from "@mui/material";
 
 const name = "Phillip";
 
@@ -115,7 +116,9 @@ export default function Layout({ children, home }) {
           </div>
         </div>
       </div>
-      <main>{children}</main>
+      <Suspense fallback={<CircularProgress />}>
+        <main>{children}</main>
+      </Suspense>
     </div>
   );
 }
