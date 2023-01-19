@@ -370,8 +370,17 @@ span.symbol {
         margin: 12px;
     }
 
+
     .stocksection {
         padding: 0;
+    }
+
+    .activetabs {
+        padding: 0;
+    }
+
+    .profiletabs {
+        gap: 10px;
     }
     .activestock {
         gap: 2px;
