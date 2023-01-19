@@ -48,7 +48,7 @@
 
 .stocksection {
     width: 100%;
-    height: 500px;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,7 +66,10 @@
     padding: 50px 0;
     align-self: flex-start;
     gap: 20px;
-    /* height: 40%; */
+    height: 300px;
+    margin: 50px 0;
+    
+
 }
 
 .activetabs, .profiletabs {
@@ -366,6 +369,10 @@ span.symbol {
         padding: 10px 30px;
         margin: 12px;
     }
+
+    .stocksection {
+        padding: 0;
+    }
     .activestock {
         gap: 2px;
         width: 100%;
@@ -389,6 +396,24 @@ span.symbol {
 
     .change {
         font-size: 0.7em;
+    }
+
+    .pricesection h2 {
+        font-size: 20px;
+    }
+
+    .img {
+        display: none;
+    }
+
+    .content {
+        grid-template-columns: auto;
+    }
+    .companydescription {
+        width: 100%;
+        line-height: 25px;
+        padding: 0;
+        margin: 0;
     }
 }
 
