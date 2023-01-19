@@ -66,7 +66,7 @@
     padding: 50px 0;
     align-self: flex-start;
     gap: 20px;
-    height: 300px;
+    height: 500px;
     margin: 50px 0;
     
 
@@ -250,6 +250,7 @@ span.symbol {
 
     .activestock {
         padding: 20px 0;
+        height: 300px;
     }
 
     .activestock .ticker {

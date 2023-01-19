@@ -291,7 +291,7 @@ export default function Search({ newData }) {
                             )
                           </p>
                         ) : (
-                          <h2>{profile["Error Message"]}</h2>
+                          <h2>N/A</h2>
                         )}
                       </div>
                       <div className={styles.details}>
@@ -317,7 +317,7 @@ export default function Search({ newData }) {
                               />
                             </div>
                           ) : (
-                            <h2>{profile["Error Message"]}</h2>
+                            <h2>N/A</h2>
                           )}
                         </div>
                         <div className={styles.content}>
