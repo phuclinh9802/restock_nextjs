@@ -349,7 +349,6 @@ span.symbol {
         font-size: 0.65em;
     }
 }
-
 @media screen and (max-width: 425px) {
     .hero {
         padding: 0 20px;
@@ -371,17 +370,7 @@ span.symbol {
     }
 
 
-    .stocksection {
-        padding: 0;
-    }
-
-    .activetabs {
-        padding: 0;
-    }
-
-    .profiletabs {
-        gap: 10px;
-    }
+    
     .activestock {
         gap: 2px;
         width: 100%;

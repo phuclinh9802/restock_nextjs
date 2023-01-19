@@ -56,7 +56,6 @@ input.input {
     padding: 14px 20px;
     margin-bottom: 20px;
     width: 100%;
-    font-family: monospace;
 }
 
 textarea.input {
@@ -65,6 +64,12 @@ textarea.input {
     height: 150px;
     resize: none;
     /* padding: 10px 100px 100px 5px; */
+}
+
+.input {
+    border-radius: 3px;
+    border: 1px solid #aaa;
+    font-family: sans-serif;
 }
 
 .contactbutton {
@@ -114,6 +119,18 @@ h2.appreciation {
     font-weight: 400;
     font-size: 18px;
     color: #333;
+}
+
+@media screen and (max-width: 768px) {
+
+    .container {
+        width: 90%;
+    }
+
+    .container .contactsection {
+        gap: 20px;
+    }
+    
 }
 
 @media screen and (max-width: 425px) {
