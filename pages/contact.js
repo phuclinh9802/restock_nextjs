@@ -6,9 +6,13 @@ import styles from "../styles/contact.module.css";
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import fontawesome from "@fortawesome/fontawesome";
-import { faInstagram, faMeta } from "@fortawesome/free-brands-svg-icons";
+import {
+  faInstagram,
+  faMeta,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
 
-fontawesome.library.add(faMeta, faInstagram);
+fontawesome.library.add(faMeta, faInstagram, faLinkedin);
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -106,7 +110,7 @@ export default function Contact() {
                   className={styles.fontawesome}
                   icon="fa-brands fa-meta"
                 />
-                <p>phil.nguyen.2901</p>
+                <p>@phil.nguyen.2901</p>
               </div>
               <div className={styles.icon}>
                 <FontAwesomeIcon
@@ -114,6 +118,13 @@ export default function Contact() {
                   icon="fa-brands fa-instagram"
                 />
                 <p>@philnguyen2901</p>
+              </div>
+              <div className={styles.icon}>
+                <FontAwesomeIcon
+                  className={styles.fontawesome}
+                  icon="fa-brands fa-linkedin"
+                />
+                <p>@philswe</p>
               </div>
             </div>
           </div>

@@ -12,6 +12,7 @@ import Home from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Suspense, useState } from "react";
 import { CircularProgress } from "@mui/material";
+import { ContactMail } from "@mui/icons-material";
 
 const name = "Phillip";
 
@@ -110,6 +111,9 @@ export default function Layout({ children, home }) {
               </MenuItem>
               <MenuItem>
                 <Search /> <Link href="/search">Search</Link>
+              </MenuItem>
+              <MenuItem>
+                <ContactMail /> <Link href="/contact">Contact</Link>
               </MenuItem>
               <Divider />
             </Menu>
