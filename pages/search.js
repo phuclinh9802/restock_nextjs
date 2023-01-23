@@ -7,7 +7,6 @@ import Autocomplete from "@mui/material/Autocomplete";
 import styles from "../styles/Home.module.css";
 import Layout from "../components/layout";
 import { makeStyles } from "@mui/styles";
-import Image from "next/image";
 import { DataGrid } from "@mui/x-data-grid";
 
 function sleep(delay = 0) {
@@ -111,9 +110,9 @@ export default function Search({ newData }) {
   const handleProfile = () => {
     setToggleSummary("profile");
   };
-  const handleDividend = () => {
-    setToggleSummary("dividend");
-  };
+  // const handleDividend = () => {
+  //   setToggleSummary("dividend");
+  // };
 
   const getData = (event, value) => {
     setTicker(value);
@@ -32435,7 +32434,6 @@ export async function getServerSideProps() {
       isActivelyTrading: true,
     },
   ];
-  // const data = await res.json();
   const newData = res.filter((d) => d.sector != null);
 
   return {
