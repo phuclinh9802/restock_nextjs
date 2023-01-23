@@ -419,7 +419,7 @@ export default function Search({ newData }) {
 
 export async function getServerSideProps() {
   const res = await fetch(
-    `https://financialmodelingprep.com/api/v3/stock-screener?limit=1000&exchange=NASDAQ&&apikey=${process.env.NEXT_PUBLIC_ACTIVE_KEY}`
+    `https://financialmodelingprep.com/api/v3/stock-screener?limit=20&exchange=NASDAQ&&apikey=${process.env.NEXT_PUBLIC_ACTIVE_KEY}`
   );
   const data = await res.json();
   const newData = data.filter((d) => d.sector != null);
